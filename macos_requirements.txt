@@ -1,0 +1,7 @@
+-r requirements.txt
+faiss-cpu==1.6.3
+ipykernel==5.5.0
+ipython==7.21.0
+ipython-genutils==0.2.0
+ipywidgets==7.6.3
+uvloop==0.15.2
