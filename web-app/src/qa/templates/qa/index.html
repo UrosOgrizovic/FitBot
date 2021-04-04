@@ -1,0 +1,19 @@
+<h1>FitBot</h1>
+
+<form action="{% url 'ask' %}" method="post">
+  {% csrf_token %}
+
+  <label>Question text</label>
+  {% if query %}
+    <input type="text" name="question" value="{{ query }}">
+  {% else %}
+    <input type="text" name="question">
+  {% endif %}
+
+  <input type="submit" value="Ask">
+</form>
+
+{% for answer_data in answers %}
+    <p>Answer: {{ answer_data.answer }}</p>
+    <p>Context: {{ answer_data.context }}</p>
+{% endfor %}

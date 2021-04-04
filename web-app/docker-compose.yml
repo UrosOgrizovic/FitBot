@@ -1,0 +1,40 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+
+  web:
+    build: .
+    restart: always
+    ports:
+      - 8000:8000
+    env_file: .env
+    command: 'sh -c "./manage.py migrate && ./manage.py runserver 0.0.0.0:8000"'
+    volumes:
+      - ./.env:/app/src/.env
+      - ./:/app
+    depends_on:
+      - db
+
+  elasticsearch:
+    image: elasticsearch:7.6.1
+    deploy:
+      restart_policy:
+        condition: any
+    environment:
+      discovery.type: single-node
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+
+volumes:
+  db-data:
+  elasticsearch-data:
