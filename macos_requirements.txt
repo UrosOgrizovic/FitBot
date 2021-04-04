@@ -1,3 +1,0 @@
--r requirements.txt
-faiss-cpu==1.6.3
-uvloop==0.15.2
