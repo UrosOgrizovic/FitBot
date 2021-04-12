@@ -86,7 +86,7 @@ class Command(BaseCommand):
 
         document_dictionaries = []
         # iterate through all the titles
-        for text_node in root.findall(".//text", namespaces=root.nsmap)[:20]:
+        for text_node in root.findall(".//text", namespaces=root.nsmap):
             document_dictionaries.append({'text': text_node.text, 'meta': None})
 
         for doc_dict in document_dictionaries:
@@ -123,6 +123,8 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **kwargs):
+        Document.objects.all().delete()
+
         input_file_path = os.path.join(settings.STATIC_ROOT, 'Wikipedia-Strength-Training.xml')
         document_dictionaries = self.read_data(input_file_path)
 

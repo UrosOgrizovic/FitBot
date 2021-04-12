@@ -21,3 +21,7 @@ class Command(BaseCommand):
                 document_dictionaries.append({'text': obj.text, 'meta': None})
 
             QaConfig.document_store.write_documents(document_dictionaries)
+
+            QaConfig.document_store.update_embeddings(QaConfig.retriever)
+
+

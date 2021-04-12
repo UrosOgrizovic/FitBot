@@ -30,8 +30,6 @@ class QAView(APIView):
 
         return render(request, 'qa/index.html', prediction)
 
-        # return Response(data=prediction, status=status.HTTP_200_OK)
-
 
 def index(request):
     return render(request, 'qa/index.html', {})
