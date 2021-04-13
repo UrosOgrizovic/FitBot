@@ -12,11 +12,13 @@ from string import printable
 from collections import Counter
 
 from src.qa.models import Document
+from src.qa.apps import QaConfig
 
 UPPERCASE_LETTERS = [chr(i) for i in range(65, 91)]
 LOWERCASE_LETTERS = [chr(i) for i in range(97, 123)]
 LETTERS = UPPERCASE_LETTERS + LOWERCASE_LETTERS
 STOP_WORDS = Counter(nltk.corpus.stopwords.words('english'))
+
 
 class Command(BaseCommand):
 
@@ -79,6 +81,45 @@ class Command(BaseCommand):
 
         return new_sent
 
+    def split_by_sentence_boundary(self, text, split_length=256, split_overlap=0):
+        sentences = nltk.tokenize.sent_tokenize(text)
+        word_count = 0
+        list_splits = []
+        current_slice = []
+        for sen in sentences:
+            current_word_count = len(sen.split(" "))
+            if current_word_count > split_length:
+                print(f"A sentence found with word count higher than the split length.")
+            if word_count + current_word_count > split_length:
+                list_splits.append(current_slice)
+                if split_overlap:
+                    overlap = []
+                    w_count = 0
+                    for s in current_slice[::-1]:
+                        sen_len = len(s.split(" "))
+                        if w_count < split_overlap:
+                            overlap.append(s)
+                            w_count += sen_len
+                        else:
+                            break
+                    current_slice = list(reversed(overlap))
+                    word_count = w_count
+                else:
+                    current_slice = []
+                    word_count = 0
+            current_slice.append(sen)
+            word_count += len(sen.split(" "))
+        if current_slice:
+            list_splits.append(current_slice)
+
+        text_splits = []
+        for sl in list_splits:
+            txt = ' '.join(sl)
+            if len(txt) > 0:
+                text_splits.append(txt)
+
+        return text_splits
+
 
     def read_data(self, input_file_path):
         tree = etree.parse(input_file_path)
@@ -87,7 +128,13 @@ class Command(BaseCommand):
         document_dictionaries = []
         # iterate through all the titles
         for text_node in root.findall(".//text", namespaces=root.nsmap):
-            document_dictionaries.append({'text': text_node.text, 'meta': None})
+            if QaConfig.retriever_type == 'sparse':
+                document_dictionaries.append({'text': text_node.text, 'meta': None})
+                continue
+
+            text_splits = self.split_by_sentence_boundary(text_node.text)
+            for text in text_splits:
+                document_dictionaries.append({'text': text, 'meta': None})
 
         for doc_dict in document_dictionaries:
 

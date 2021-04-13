@@ -25,7 +25,7 @@ class QAView(APIView):
         if not question:
             return Response({'error': 'Question was not passed in request body.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        prediction = QaConfig.pipe.run(query=question, top_k_retriever=10, top_k_reader=5)
+        prediction = QaConfig.pipe.run(query=question, top_k_retriever=3, top_k_reader=3)
         print(prediction)
 
         return render(request, 'qa/index.html', prediction)
