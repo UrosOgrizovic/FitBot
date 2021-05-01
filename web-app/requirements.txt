@@ -26,7 +26,7 @@ django-cors-headers==3.4.0
 django-rest-passwordreset==1.1.0
 django-rest-swagger==2.2.0
 easy-thumbnails==2.7
-django-auto-prefetching==0.1.8
+django-auto-prefetching==0.1.9
 django-extensions==3.1.1
 
 # AI
@@ -34,13 +34,13 @@ farm-haystack==0.7.0
 farm==0.6.2
 nltk==3.5
 
-
 # Developer Tools
 ipdb==0.13.3
 ipython==7.16.1
 flake8==3.8.3
 yapf==0.30.0
 django-inlinecss==0.3.0
+newspaper3k==0.2.8
 
 # Testing
 factory-boy==2.12.0
