@@ -110,3 +110,6 @@ venv.bak/
 # media files
 media/*
 !media/.gitkeep
+
+.idea/
+.vscode/
