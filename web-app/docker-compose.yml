@@ -3,7 +3,7 @@ services:
   db:
     image: mysql:5.7
     ports:
-      - 3306:3306
+      - 3307:3306
     environment:
       MYSQL_DATABASE: database
       MYSQL_USER: user
@@ -24,6 +24,7 @@ services:
       - ./:/app
     depends_on:
       - db
+      - elasticsearch
 
   elasticsearch:
     image: elasticsearch:7.6.1
@@ -34,6 +35,7 @@ services:
       discovery.type: single-node
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
+      - ./elasticsearch-config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
 
 volumes:
   db-data:

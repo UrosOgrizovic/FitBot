@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/grizl/OneDrive/Desktop/FTN/SIAP/FitBot/web-app/mlruns/0/04d48e5744b24757b088efca05d3d7c9/artifacts
+end_time: 1619942429677
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 04d48e5744b24757b088efca05d3d7c9
+run_uuid: 04d48e5744b24757b088efca05d3d7c9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1619942404876
+status: 3
+tags: []
+user_id: root

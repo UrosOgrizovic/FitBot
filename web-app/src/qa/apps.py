@@ -5,7 +5,6 @@ from haystack.retriever.sparse import ElasticsearchRetriever
 from haystack.retriever.dense import DensePassageRetriever
 from haystack.reader.farm import FARMReader
 from haystack.pipeline import ExtractiveQAPipeline
-
 ROBERTA_BASE_MODEL = "deepset/roberta-base-squad2"
 MINILM_UNCASED_MODEL = "deepset/minilm-uncased-squad2"
 
