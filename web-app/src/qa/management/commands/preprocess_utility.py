@@ -48,7 +48,7 @@ class PreprocessUtility():
 
 
     def lemmatization(self, sent):
-        """Lemmatize sentence, removew stop words and non-english words
+        """Lemmatize sentence, remove stop words and non-english words
         Args:
             sent (sent): sentence to modify
         Returns:
@@ -147,7 +147,8 @@ class PreprocessUtility():
                 sent = sent.replace("[[", "")
                 sent = sent.replace("]]", "")
 
-                new_sents.append(self.lemmatization(sent))
+                # new_sents.append(self.lemmatization(sent))
+                new_sents.append(sent)
             doc_dict["text"] = "".join(new_sents)
 
         return document_dictionaries

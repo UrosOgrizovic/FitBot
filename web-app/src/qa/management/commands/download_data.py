@@ -13,7 +13,6 @@ from src.qa.models import Document
 
 
 WEBSITES_TO_SCRAPE = [
-    {'name': 'sciencedaily', 'url': 'https://sciencedaily.com/news/health_medicine/fitness/'},
     {'name': 'musleandfitness-nutrition', 'url': 'https://muscleandfitness.com/nutrition/'},
     {'name': 'musleandfitness-nutrition-healthy', 'url': 'https://muscleandfitness.com/nutrition/healthy-eating/'},
     {'name': 'musleandfitness-nutrition-lose-fat', 'url': 'https://muscleandfitness.com/nutrition/lose-fat/'},
@@ -47,5 +46,5 @@ class Command(BaseCommand, PreprocessUtility):
                     document_dictionaries.append({'text': text, 'meta': None})
 
             processed_document_dictionaries = self.process_documents(document_dictionaries)
-            for document in document_dictionaries:
+            for document in processed_document_dictionaries:
                 Document.objects.create(text=document.get('text', ''))
