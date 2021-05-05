@@ -13,8 +13,8 @@ from src.qa.models import Document
 
 
 WEBSITES_TO_SCRAPE = [
-    {'name': 'musleandfitness-nutrition', 'url': 'https://muscleandfitness.com/nutrition/'},
-    {'name': 'musleandfitness-nutrition-healthy', 'url': 'https://muscleandfitness.com/nutrition/healthy-eating/'},
+    # {'name': 'musleandfitness-nutrition', 'url': 'https://muscleandfitness.com/nutrition/'},
+    # {'name': 'musleandfitness-nutrition-healthy', 'url': 'https://muscleandfitness.com/nutrition/healthy-eating/'},
     {'name': 'musleandfitness-nutrition-lose-fat', 'url': 'https://muscleandfitness.com/nutrition/lose-fat/'},
     {'name': 'musleandfitness-nutrition-gain-mass', 'url': 'https://muscleandfitness.com/nutrition/gain-mass/'},
     {'name': 'musleandfitness-nutrition-supplements', 'url': 'https://muscleandfitness.com/supplements/'},
