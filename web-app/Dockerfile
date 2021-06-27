@@ -18,9 +18,6 @@ COPY ./docker/ /
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
-COPY nltk_stuff.py ./nltk_stuff.py
-RUN python nltk_stuff.py
-
-COPY evaluation_data.txt ./
+RUN python3 download_dependencies.py
 
 COPY . ./

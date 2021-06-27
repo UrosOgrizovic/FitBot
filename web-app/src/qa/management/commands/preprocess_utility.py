@@ -21,6 +21,14 @@ LETTERS = UPPERCASE_LETTERS + LOWERCASE_LETTERS
 STOP_WORDS = Counter(nltk.corpus.stopwords.words('english'))
 
 class PreprocessUtility():
+    def extract_entities(self, text):
+        labels_to_filter_out = ['ORGANIZATION', 'LOCATION', 'PERSON']
+        for sent in nltk.sent_tokenize(text):
+            for chunk in nltk.ne_chunk(nltk.pos_tag(nltk.word_tokenize(sent))):
+                if hasattr(chunk, 'label') and (chunk.label() in labels_to_filter_out):
+                    return True
+        return False
+
     def match_regex(self, sent):
         """Gets link text. Links are formatted as [[Wikipedia article title|link text]].
         Examples: 1. [[sagittal plane|sagittal-plane]]
@@ -147,8 +155,14 @@ class PreprocessUtility():
                 sent = sent.replace("[[", "")
                 sent = sent.replace("]]", "")
 
-                # new_sents.append(self.lemmatization(sent))
                 new_sents.append(sent)
-            doc_dict["text"] = "".join(new_sents)
+            
+            filtered_sents = []
+            for sent in new_sents:
+                if self.extract_entities(sent):
+                    continue
+                filtered_sents.append(sent)
+
+            doc_dict["text"] = "".join(filtered_sents)
 
         return document_dictionaries

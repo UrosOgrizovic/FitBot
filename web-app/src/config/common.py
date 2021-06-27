@@ -27,7 +27,6 @@ INSTALLED_APPS = (
     'easy_thumbnails',  # image lib
     'corsheaders',  # cors handling
     'django_celery_beat',  # task scheduler
-    'djmoney',  # money object
 
     # Your apps
     'src.users',
