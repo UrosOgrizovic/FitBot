@@ -56,7 +56,7 @@ class PreprocessUtility():
 
 
     def lemmatization(self, sent):
-        """Lemmatize sentence, removew stop words and non-english words
+        """Lemmatize sentence, remove stop words and non-english words
         Args:
             sent (sent): sentence to modify
         Returns:
