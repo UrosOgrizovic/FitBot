@@ -18,5 +18,7 @@ COPY ./docker/ /
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
+RUN python3 download_dependencies.py
+
 COPY . ./
 

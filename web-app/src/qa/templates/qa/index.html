@@ -1,17 +1,28 @@
-<h1>FitBot</h1>
+{% load static %}
 
-<form action="{% url 'ask' %}" method="post">
-  {% csrf_token %}
+<link rel="stylesheet" type="text/css" href="{% static 'qa/style.css' %}">
 
-  <label>Question text</label>
-  {% if query %}
-    <input type="text" name="question" value="{{ query }}">
-  {% else %}
-    <input type="text" name="question">
-  {% endif %}
 
-  <input type="submit" value="Ask">
-</form>
+<div class="question-form">
+  <form action="{% url 'ask' %}" method="post">
+    {% csrf_token %}
+    <h1>FitBot</h1>
+    
+    <div class="content">
+      <div class="input-field">
+        {% if query %}
+          <input type="text" name="question" value="{{ query }}">
+        {% else %}
+          <input type="text" name="question" placeholder="Question text..." />
+        {% endif %}
+      </div>
+    </div>
+    <div class="action">
+      <button type="submit">Ask</button>
+    </div>
+  </form>
+</div>
+
 
 {% for answer_data in answers %}
     <p>Answer: {{ answer_data.answer }}</p>
